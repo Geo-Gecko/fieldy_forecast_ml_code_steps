@@ -1,0 +1,6 @@
+The following scripts cover the process of training a basic hierarchical classifier and testing it on Sentinel-2 satellite imagery. The hierarchy for the classifiers is a binary classifier at the top (crop vs. not crop), and then the two subsequent classifiers assign a fine class based on the output of the binary coarse class.
+
+The layout of the Jupyter notebook "CNN_v0.ipynb" makes changing individual components of the model then comparing outputs relatively simple. It also allows performance metrics from previous runs to be appended to the current one, allowing the user to "add an extra 10 epochs to the end of the run" if their initial run wasn't long enough. This saves time from having to re-run models from the start every time. 
+
+"CNN_v0.ipynb" takes field pixel data derived from satellite imagery in CSV format as its input, and uses it to train its models.
+"predict_hierarchical.py" uses the .hdf5 model weight outputs from the above and a csv of however many Sentinel-2 pixels, and predicts the correct class for all input pixels based on their pixel values across 12 bands. 
